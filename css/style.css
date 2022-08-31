@@ -72,12 +72,14 @@ hr {
 }
 
 :root {
-    --haze-color: #5b5c72;
+    --haze-color: #9899a9;
     --clear-color: #20c6e3;
     --mist-color: #7674fd;
     --rain-color: #5d52f8;
+    --drizzle-color: #5f778a;
     --storm-color: #2b293b;
-    --clouds-color: #173b45;
+    --clouds-color: #006a87;
+    --snow-color: #00bfbf;
 
 }
 
@@ -101,12 +103,11 @@ body {
 }
 header{
     margin-bottom: 20px;
-    color: #b8b8b8;
+    color: #ffffff;
     text-align: center;
 }
 header h1{
-    font-size: 36px;
-    color: #ffffff;
+    font-size: 36px;    
 }
 .search-box, .location, .date-box{
     text-align: center;
@@ -195,3 +196,33 @@ header h1{
     font-size: 24px;
 }
 
+@media (max-width: 480px) {
+    .container{
+        width: 375px;
+    }
+}
+@media (max-width: 376px) {
+    body{
+        font-size: 14px;
+    }
+    .container{
+        width: 260px;
+    }
+    header h1{
+        font-size: 28px;    
+    }
+    .weather-card{
+        padding: 15px;
+    }
+    .climate-box{
+        flex-direction: column;
+    }
+    .climate-details{
+        padding: 0;
+    }
+    .temp-value {
+        margin: 20px 0;
+        text-align: center;
+    }
+
+}

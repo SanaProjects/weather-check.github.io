@@ -25,26 +25,8 @@ searchInputBox.addEventListener('keypress', (event)=>{
     }
 })
 
-function curLocWeather(){
-    let long;
-    let lat;
-    if(navigator.geolocation){
-        
-        navigator.geolocation.getCurrentPosition((position)=>{
-            long=position.coords.longitude;
-            lat=position.coords.latitude;
-            const proxy= "https://cors-anywhere.herokuapp.com/";
-
-            const api=`${proxy}${weatherApi.baseUrl}lat=${lat}&lon=${long}&appid=${weatherApi.key}&units=metric`
-
-            fetch(api).then((weather)=>{
-                return weather.json();
-            })
-
-            .then (showWeatherReport);
-        })
-
-    }
+function curLocWeather(){    
+    curWeatherData();
 }
 
 
@@ -63,27 +45,24 @@ function getWeatherReport(city){
 
 // location
 
-window.addEventListener("load",()=>{
-    let long;
-    let lat;
-    if(navigator.geolocation){
-        
-        navigator.geolocation.getCurrentPosition((position)=>{
-            long=position.coords.longitude;
-            lat=position.coords.latitude;
-            const proxy= "https://cors-anywhere.herokuapp.com/";
 
-            const api=`${proxy}${weatherApi.baseUrl}lat=${lat}&lon=${long}&appid=${weatherApi.key}&units=metric`
 
-            fetch(api).then((weather)=>{
-                return weather.json();
-            })
+curWeatherData();
 
-            .then (showWeatherReport);
+function curWeatherData() {
+    navigator.geolocation.getCurrentPosition((position)=>{
+        long=position.coords.longitude;
+        lat=position.coords.latitude;        
+
+        const api=`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${weatherApi.key}&units=metric`;
+
+        fetch(api).then((weather)=>{
+            return weather.json();
         })
 
-    }
-})
+        .then (showWeatherReport);
+    })
+}
 
 
 // show weather report
@@ -106,23 +85,32 @@ function showWeatherReport(weather){
     feelLikeTemp.innerHTML = `${Math.round(weather.main.feels_like)}&deg;C `;
 
     let humid = document.getElementById('humidity');
-    humid.innerText = `${Math.round(weather.main.humidity)}`;
+    humid.innerText = `${Math.round(weather.main.humidity)}%`;
 
     let date = document.getElementById('date');
     let todayDate = new Date();
     date.innerText = dateManage(todayDate);
 
-    if(weatherType.textContent == 'Haze'){
-        document.body.style.backgroundColor = "var(--haze-color)";
+    if(weather.weather[0].id<300 && weather.weather[0].id>=200){
+        document.body.style.backgroundColor = "var(--storm-color)";
     }
-    else if(weatherType.textContent == 'Clouds'){
-        document.body.style.backgroundColor = "var(--clouds-color)";
+    else if(weather.weather[0].id<400 && weather.weather[0].id>=300){
+        document.body.style.backgroundColor = "var(--drizzle-color)";
     }
-    else if(weatherType.textContent == 'Clear'){
+    else if(weather.weather[0].id<550 && weather.weather[0].id>=500){
+        document.body.style.backgroundColor = "var(--rain-color)";
+    }
+    else if(weather.weather[0].id<700 && weather.weather[0].id>=600){
+        document.body.style.backgroundColor = "var(--snow-color)";
+    }
+    else if(weather.weather[0].id<750 && weather.weather[0].id>=700){
+        document.body.style.backgroundColor = "var(--mist-color)";
+    }
+    else if(weather.weather[0].id==800){
         document.body.style.backgroundColor = "var(--clear-color)";
     }
-    else if(weatherType.textContent == 'Mist'){
-        document.body.style.backgroundColor = "var(--mist-color)";
+    else if(weather.weather[0].id>800){
+        document.body.style.backgroundColor = "var(--clouds-color)";
     }
 
     let weatherIcon = document.getElementById('w-icon');
