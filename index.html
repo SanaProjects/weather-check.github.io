@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Check | Weather App</title>  
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <script src="https://kit.fontawesome.com/ec609cfcb1.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+ 
+  <section class="container">
+
+
+    <header>
+      <h1>Weather Check</h1>
+      <p>Enter the name of your City and get the weather details</p>
+    </header>
+
+    <div class="search-box">      
+      <input type="text" id="search" class="input-search" placeholder="Enter The City..." autocomplete="off">
+    </div>
+    <div class="weather-card">
+      <div class="location">
+        <p class="city" id="city">_ _ _ _ _</p>
+      </div>
+      
+  
+  
+      <div class="date-box">
+        <p class="date" id="date">29 August, 2020 | Monday</p>
+      </div>
+
+      <div class="climate-box">
+        <div class="climate-details">
+          <div class="weather-icon">
+            <img id="w-icon" src="./images/clear-sky.png" alt="Weather Icon">
+          </div>
+          <p class="description" id="weather">_ _ _</p>
+        </div>
+        <div class="temp-value">        
+          <p class="temp"><span id="temp">- -</span>&deg;C</p>
+          <hr>
+          <p class="min-max" id="minMax"> Max - -&deg;C / Min - -&deg;C </p>  
+          <hr>
+          <p class="feel-like">Feel Like ~ <span id="feel">- -&deg;C</span> </p>  
+          <hr>
+          <p class="humidity">Humidity ~ <span id="humidity">- -</span> </p>   
+        </div>
+      </div>
+  
+
+      
+  
+      <div class="cur-location">        
+        <button class="loc-btn" id="cur-loc-btn" onclick="curLocWeather()"><i class="fas fa-map-marker-alt"></i> Weather in your location</button>
+
+      </div>
+  
+      
+  
+      
+      
+    </div>
+  
+    
+  
+   
+  
+    <footer>    
+      
+    </footer>
+  </section>
+
+
+
+
+  <script src="js/app.js"></script>
+</body>
+
+</html>
