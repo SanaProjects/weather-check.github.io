@@ -87,9 +87,7 @@ function showWeatherReport(weather){
     let humid = document.getElementById('humidity');
     humid.innerText = `${Math.round(weather.main.humidity)}%`;
 
-    let date = document.getElementById('date');
-    let todayDate = new Date();
-    date.innerText = dateManage(todayDate);
+    
 
     if(weather.weather[0].id<300 && weather.weather[0].id>=200){
         document.body.style.backgroundColor = "var(--storm-color)";
@@ -142,7 +140,9 @@ function showWeatherReport(weather){
 
 
 // date manager
-
+let date = document.getElementById('date');
+    let todayDate = new Date();
+    date.innerText = dateManage(todayDate);
 function dateManage(dateArg) {
     let days = ["SUnday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
